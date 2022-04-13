@@ -26,6 +26,23 @@ void move_zeros_to_the_end(std::vector<int> &numbers) {
     return;
 }
 
+void move_zeros_to_the_end_linear(std::vector<int> &numbers) {
+    const int size = numbers.size();
+    const int element_to_remove = 0;
+    int new_index = 0;
+    for (int index = 0; index < size; ++index) {
+        if (numbers[index] == element_to_remove) {
+            continue;
+        }
+        numbers[new_index] = numbers[index];
+        ++new_index;
+    }
+    for (int index = new_index; index < size; ++index) {
+        numbers[index] = element_to_remove;
+    }
+    return;
+}
+
 void test_case(
     int test_number, 
     const std::vector<int> &input, 
@@ -43,7 +60,12 @@ void test_case(
     }
     
 }
-void move_zeros_to_the_end_test(void (*algorithm)(std::vector<int>&)) {
+void move_zeros_to_the_end_test(
+    void (*algorithm)(std::vector<int>&),
+    const std::string &greetings = "move_zeros_to_the_end"
+) {
+    std::cout << greetings << '\n';
+    
     const std::vector<int> input1 {1,1,1,1};
     const std::vector<int> expected1 {1,1,1,1};
     std::vector<int> actual1 {1,1,1,1};
@@ -94,6 +116,7 @@ void move_zeros_to_the_end_test(void (*algorithm)(std::vector<int>&)) {
     
 }
 int main() {
-    move_zeros_to_the_end_test(move_zeros_to_the_end);
+    move_zeros_to_the_end_test(move_zeros_to_the_end, "quadratic");
+    move_zeros_to_the_end_test(move_zeros_to_the_end_linear, "linear");
     return 0;
 }
