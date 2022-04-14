@@ -1,28 +1,26 @@
 #include <iostream>
 #include <unordered_map>
 
-void add_to_storage(const std::string &input1, std::unordered_map<char, int> &storage1) {
-    for (char symbol: input1) {
-        if (storage1.find(symbol) == storage1.cend())
-            storage1.insert(std::make_pair(symbol, 0));
-        else 
-            storage1.at(symbol) += 1;
-    }
-}
-
 bool is_anagram(const std::string& input1, const std::string& input2) {
     if (input1.size() != input2.size())
         return false;
     
-    std::unordered_map<char, int> storage1;
-    storage1.reserve(input1.size());
-    std::unordered_map<char, int> storage2;
-    storage2.reserve(input2.size());
+    std::unordered_map<char, int> storage;
+    storage.reserve(input1.size());
 
-    add_to_storage(input1, storage1);
-    add_to_storage(input2, storage2);
 
-    return storage1 == storage2;
+    for (char symbol: input1)
+        storage[symbol] += 1;
+
+    for (char symbol: input2)
+        storage[symbol] -= 1;
+    
+
+    for (const auto& [_, counter]: storage)
+        if (counter)
+            return false;
+
+    return true;
 }
 
 void test_case(int test_number, const std::string &input1, const std::string& input2, bool expected, bool actual) {
