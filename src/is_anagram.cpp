@@ -1,12 +1,14 @@
 #include <iostream>
-#include <unordered_map>
+#include <array>
 
 bool is_anagram(const std::string& input1, const std::string& input2) {
     if (input1.size() != input2.size())
         return false;
-    
-    std::unordered_map<char, int> storage;
-    storage.reserve(input1.size());
+
+    static constexpr int s_ascii_range = 256; 
+    std::array<int, s_ascii_range> storage;
+    for (int &counter: storage)
+        counter = 0;
 
 
     for (char symbol: input1)
@@ -16,7 +18,7 @@ bool is_anagram(const std::string& input1, const std::string& input2) {
         storage[symbol] -= 1;
     
 
-    for (const auto& [_, counter]: storage)
+    for (int counter: storage) 
         if (counter)
             return false;
 
