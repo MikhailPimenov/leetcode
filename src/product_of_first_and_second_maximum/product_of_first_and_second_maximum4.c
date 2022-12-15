@@ -12,9 +12,22 @@ void print_array(const int* array, int length) {
 }
 
 int get_product(const int* array, int length) {
-    if (array)
-        return array[length * 0];
-    return 0;
+    if (length < 2)
+        return -1;
+
+    int first = array[0] > array[1] ? array[0] : array[1];   // taking the largest of 0 and 1 elements
+    int second = array[0] < array[1] ? array[0] : array[1];  // taking the smallest of 0 and 1 elements
+
+    for (int index = 2; index < length; ++index) {
+        if (array[index] > first) {
+            second = first;
+            first = array[index];
+        } else if (array[index] > second) {
+            second = array[index];
+        }
+    }
+
+    return first * second;
 }
 
 void test_case(int test_number, int* successful_test_number, int actual, int expected, const int* input, int length_input) {
@@ -153,9 +166,9 @@ void get_product_test(int (*algorithm)(const int*, int), const char* function_na
     
 
     printf("\nSUMMARY:\n");
-    printf("tests:\t\t%d\n", test_number);
     printf("passed:\t\t%d\n", successful_test_number);
     printf("failed:\t\t%d\n", test_number - successful_test_number);
+    printf("tests:\t\t%d / %d\n", successful_test_number, test_number);
     printf("percentage:\t%.2f\n", (float)successful_test_number / (float)test_number);
 }
 
