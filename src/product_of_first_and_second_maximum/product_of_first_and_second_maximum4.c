@@ -57,6 +57,62 @@ void get_product_test(int (*algorithm)(const int*, int), const char* function_na
         test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
 
+
+
+
+    ++test_number;
+
+    {
+        const int array[] = {9,2,7,4,5,6,11};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = 99;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+
+    ++test_number;
+
+    {
+        const int array[] = {0,9,7,4,5,8,6};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = 72;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+
+    ++test_number;
+
+    {
+        const int array[] = {8,9,7,4,5,0,0};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = 72;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+
+    ++test_number;
+
+    {
+        const int array[] = {1,1,5,4,5,0,0,8,7};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = 56;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+    
+
     printf("\nSUMMARY:\n");
     printf("tests:\t\t%d\n", test_number);
     printf("passed:\t\t%d\n", successful_test_number);
