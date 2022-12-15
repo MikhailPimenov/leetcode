@@ -111,6 +111,45 @@ void get_product_test(int (*algorithm)(const int*, int), const char* function_na
         test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
 
+
+    ++test_number;
+
+    {
+        const int array[] = {5,4};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = 20;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+
+    ++test_number;
+
+    {
+        const int array[] = {5};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = -1;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
+
+    ++test_number;
+
+    {
+        const int array[] = {9};
+        const int length = sizeof(array) / sizeof(array[0]);
+
+        const int expected = -1;
+        const int actual = algorithm(array, length);
+
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
+    }
+
     
 
     printf("\nSUMMARY:\n");
