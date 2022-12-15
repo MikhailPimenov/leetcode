@@ -31,7 +31,7 @@ void test_case(int test_number, int* successful_test_number, int actual, int exp
     }
 }
 
-void get_product_test() {
+void get_product_test(int (*algorithm)(const int*, int)) {
     int test_number = 1;
     int successful_test_number = 0;
     {
@@ -39,7 +39,7 @@ void get_product_test() {
         const int length = sizeof(array) / sizeof(array[0]);
 
         const int expected = 30;
-        const int actual = get_product(array, length);
+        const int actual = algorithm(array, length);
 
         test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
@@ -50,7 +50,7 @@ void get_product_test() {
         const int length = sizeof(array) / sizeof(array[0]);
 
         const int expected = 63;
-        const int actual = get_product(array, length);
+        const int actual = algorithm(array, length);
 
         test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
@@ -63,7 +63,7 @@ void get_product_test() {
 }
 
 int main() {
-    get_product_test();
+    get_product_test(get_product);
 
     return 0;
 }
