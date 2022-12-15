@@ -5,6 +5,11 @@
 // [5, 5, 5, 0] 		-> 25 (5*5)
 // [1, 4, -6, -3, 8, 9] 	-> 72 (8*9)
 
+void print_array(const int* array, int length) {
+    for (int index = 0; index < length; ++index)
+        printf("%d ", array[index]);
+    printf("\n");
+}
 
 int get_product(const int* array, int length) {
     if (array)
@@ -13,6 +18,9 @@ int get_product(const int* array, int length) {
 }
 
 int main() {
-    printf("Wello, world!\n");
+    const int array_main[] = {1,2,3,4,5,6,7,8};
+    const int length_main = sizeof(array_main) / sizeof(array_main[0]);
+    print_array(array_main, length_main);
+
     return 0;
 }
