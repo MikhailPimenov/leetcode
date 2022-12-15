@@ -17,6 +17,20 @@ int get_product(const int* array, int length) {
     return 0;
 }
 
+void test_case(int test_number, int* successful_test_number, int actual, int expected, const int* input, int length_input) {
+    printf("test #%d:\t", test_number);
+    if (actual == expected) {
+        printf("ok\n");
+        ++(*successful_test_number);
+    } else {
+        printf("FAILED\n");
+        printf("input:\t\t");
+        print_array(input, length_input);
+        printf("expected:\t%d\n", expected);
+        printf("actual:\t\t%d\n", actual);
+    }
+}
+
 void get_product_test() {
     int test_number = 1;
     int successful_test_number = 0;
@@ -27,17 +41,7 @@ void get_product_test() {
         const int expected = 30;
         const int actual = get_product(array, length);
 
-        printf("test #%d:\t", test_number);
-        if (actual == expected) {
-            printf("ok\n");
-            ++successful_test_number;
-        } else {
-            printf("FAILED\n");
-            printf("input:\t\t");
-            print_array(array, length);
-            printf("expected:\t%d\n", expected);
-            printf("actual:\t\t%d\n", actual);
-        }
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
     ++test_number;
 
@@ -48,17 +52,7 @@ void get_product_test() {
         const int expected = 63;
         const int actual = get_product(array, length);
 
-        printf("test #%d:\t", test_number);
-        if (actual == expected) {
-            printf("ok\n");
-            ++successful_test_number;
-        } else {
-            printf("FAILED\n");
-            printf("input:\t\t");
-            print_array(array, length);
-            printf("expected:\t%d\n", expected);
-            printf("actual:\t\t%d\n", actual);
-        }
+        test_case(test_number, &successful_test_number, actual, expected, array, length);
     }
 
     printf("\nSUMMARY:\n");
