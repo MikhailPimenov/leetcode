@@ -31,7 +31,9 @@ void test_case(int test_number, int* successful_test_number, int actual, int exp
     }
 }
 
-void get_product_test(int (*algorithm)(const int*, int)) {
+void get_product_test(int (*algorithm)(const int*, int), const char* function_name) {
+    printf("testing:\t%s\n", function_name);
+
     int test_number = 1;
     int successful_test_number = 0;
     {
@@ -63,7 +65,7 @@ void get_product_test(int (*algorithm)(const int*, int)) {
 }
 
 int main() {
-    get_product_test(get_product);
+    get_product_test(get_product, "get_product");
 
     return 0;
 }
